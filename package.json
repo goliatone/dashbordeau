@@ -9,19 +9,60 @@
     "start": "electron .",
     "package:mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
     "installer:mac": "electron-installer-dmg ./release-builds/Dashbordeau-darwin-x64/Dashbordeau.app Dashbordeau --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns --background=assets/src/dashbordeau-installer.png",
-    "build:mac": "npm run package:mac && npm run installer:mac"
+    "build:mac": "npm run package:mac && npm run installer:mac",
+    "postinstall": "electron-builder install-app-deps",
+    "make-background": "tiffutil -cathidpicheck assets/src/dashbordeau-installer.png assets/src/dashbordeau-installer@2x.png -out build/background.tiff",
+    "dist": "electron-builder",
+    "release": "build"
   },
-  "author": "Goliatone <hello@goliatone.com>",
+  "author": {
+    "name": "Goliatone",
+    "email": "hello@goliatone.com"
+  },
   "copyright": "© 2018, Goliatone",
   "homepage": "http://goliatone.com",
   "license": "MIT",
   "devDependencies": {
     "electron": "^1.8.4",
+    "electron-builder": "^20.8.1",
     "electron-icon-maker": "0.0.4",
     "electron-installer-dmg": "^0.2.1",
     "electron-packager": "^12.0.0"
   },
   "dependencies": {
     "electron-default-menu": "^1.0.1"
+  },
+  "build": {
+    "productName": "Dashbordeau",
+    "copyright": "© 2018, Goliatone",
+    "appId": "goliatone.dashbordeau",
+    "mac": {
+      "icon": "assets/icons/mac/icon.icns",
+      "category": "public.app-category.utilities",
+      "target": "dmg"
+    },
+    "dmg": {
+      "background": "assets/src/dashbordeau-installer.png",
+      "contents": [
+        {
+          "x": 410,
+          "y": 285,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 285,
+          "type": "file"
+        }
+      ]
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "goliatone",
+        "repo": "dashbordeau"
+      }
+    ]
   }
 }
