@@ -1,18 +1,41 @@
 'use strict';
 
-const { app, BrowserWindow } = require('electron');
+const { Menu, app, shell, BrowserWindow } = require('electron');
+const defaultMenu = require('electron-default-menu');
 const path = require('path');
 const url = require('url');
 
-// Keep a global reference of the maindow object, if you don't, the maindow will
-// be closed automatically when the JavaScript object is garbage collected.
 let main, webview, loaderData;
+
+function init() {
+    createDefaultMenu();
+    createWindow();
+}
+
+function createDefaultMenu() {
+    const menu = defaultMenu(app, shell);
+    // menu.splice(4, 0, {
+    //     label: 'Custom',
+    //     submenu: [
+    //         {
+    //             label: 'Do something',
+    //             click: (item, focusedWindow) => {
+    //                 dialog.showMessageBox({
+    //                     message: 'Do something',
+    //                     buttons: ['OK']
+    //                 });
+    //             }
+    //         }
+    //     ]
+    // });
+    Menu.setApplicationMenu(Menu.buildFromTemplate(menu));
+}
 
 function createWindow() {
     // Create the browser maindow.
     main = new BrowserWindow({
         width: 600,
-        height: 590,
+        height: 630,
         titleBarStyle: 'hiddenInset',
         frame: false,
         show: false,
@@ -43,8 +66,8 @@ function createWindow() {
     });
 }
 
-function createLoader() {
-    // Create the browser maindow.
+function createLoader(options = {}) {
+    // Create the loader webview, this will load our dashboard.
     webview = new BrowserWindow({
         width: 1024,
         height: 800,
@@ -52,7 +75,7 @@ function createLoader() {
         show: false
     });
 
-    // webview.setFullScreen(true);
+    webview.setFullScreen(options.fullscreen);
 
     // and load the index.html of the app.
     webview.loadURL(
@@ -64,7 +87,9 @@ function createLoader() {
     );
 
     // Open the DevTools.
-    // webview.webContents.openDevTools();
+    if (options.devTools) {
+        webview.webContents.openDevTools();
+    }
 
     // Emitted when the maindow is closed.
     webview.on('closed', () => {
@@ -80,7 +105,7 @@ function createLoader() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser maindows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow);
+app.on('ready', init);
 
 // Quit when all maindows are closed.
 app.on('maindow-all-closed', () => {
@@ -108,7 +133,7 @@ ipcMain.on('form.sumbit', (event, settings) => {
 
     global.loaderData = loaderData = settings;
 
-    createLoader();
+    createLoader(settings);
 });
 
 ipcMain.on('loader.ready', (event, msg) => {
