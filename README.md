@@ -1,8 +1,8 @@
-## Dashbordeur
+## Dashbordeau
 
 Fullscreen dashboard with configurable auto-refresh intervals.git 
 
-![preview](./assets/images/preview.png "Dashbordeur preview")
+![preview](./assets/images/preview.png "Dashbordeau preview")
 
 
 ## Build
