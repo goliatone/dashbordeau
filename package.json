@@ -2,15 +2,19 @@
   "name": "dashbordeur",
   "productName": "Dashbordeur",
   "version": "0.1.0",
+  "private": true,
   "description": "Fullscreen Tableau dashboards",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "package:mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
-    "installer:mac": "electron-installer-dmg ./release-builds/Dashbordeur-darwin-x64/Dashbordeur.app dashbordeur --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns --background=assets/src/dashbordeur-installer.png"
+    "installer:mac": "electron-installer-dmg ./release-builds/Dashbordeur-darwin-x64/Dashbordeur.app Dashbordeur --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns --background=assets/src/dashbordeur-installer.png",
+    "build:mac": "npm run package:mac && npm run installer:mac"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Goliatone <hello@goliatone.com>",
+  "copyright": "© 2018, Goliatone",
+  "homepage": "http://goliatone.com",
+  "license": "MIT",
   "devDependencies": {
     "electron": "^1.8.4",
     "electron-icon-maker": "0.0.4",
