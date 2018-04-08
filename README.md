@@ -9,10 +9,20 @@ Fullscreen dashboard with configurable auto-refresh intervals.
 
 Currently builds are macOS only.
 
+Run `npm run package:mac` to package for mac.
+
 Run `npm run build:mac` to package and generate a DMG file.
 
+Run `npm run release` to generate a draft release and upload binaries to github.
+
+Need to have `GH_TOKEN` set to publish.
+
+
+
+
+
 <!--
-electron-icon-maker -i assets/icons/src/dashbordeur-round.png -o assets/
+electron-icon-maker -i assets/icons/src/dashbordeau-round.png -o assets/
 
 https://www.christianengvall.se/electron-menu/
 https://github.com/webtorrent/webtorrent-desktop/blob/62cb304971cb867e5923044df9b7afa2c5f35e78/main/updater.js
