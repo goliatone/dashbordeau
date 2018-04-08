@@ -1,15 +1,23 @@
 {
-  "name": "webviewcontroller",
-  "version": "1.0.0",
-  "description": "WebView Controller",
+  "name": "dashbordeur",
+  "productName": "Dashbordeur",
+  "version": "0.1.0",
+  "description": "Fullscreen Tableau dashboards",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package:mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "installer:mac": "electron-installer-dmg ./release-builds/Dashbordeur-darwin-x64/Dashbordeur.app dashbordeur --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns --background=assets/src/dashbordeur-installer.png"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "electron": "^1.8.4",
-    "electron-icon-maker": "0.0.4"
+    "electron-icon-maker": "0.0.4",
+    "electron-installer-dmg": "^0.2.1",
+    "electron-packager": "^12.0.0"
+  },
+  "dependencies": {
+    "electron-default-menu": "^1.0.1"
   }
 }
