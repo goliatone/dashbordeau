@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>WebView Controller</title>
     <link href="css/spectre.min.css" link rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption" rel="stylesheet"> 
     <style>
         body {
             user-select: none;
@@ -21,9 +22,25 @@
             width: 100%;
             margin-top: 25px;
         }
-
+        
         h3 {
             cursor: default;
+            font-family: 'PT Sans Caption', sans-serif;
+        }
+
+        .logo {
+            margin-top: 12px;
+            margin-left: 27%;
+            padding-bottom: 10px;
+        }
+
+        .title {
+            padding-left: 12px;
+            margin-top: 31px;
+        }
+
+        .divider {
+            padding-bottom: 25px;
         }
     </style>
 </head>
@@ -31,9 +48,16 @@
 <body>
     <div id="content" class="container">
         <div class="columns centered">
-            <div class="text-center">
-                <h3>Dashbordaur</h3>
+            <div class="columns">
+                <div class="logo">
+                    <img class="" src="data:image/png;base64,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">
+                </div>
+                <div class="title">
+                    <h3>Dashbordeur</h3>
+                </div>
             </div>
+
+            <div class="divider"></div>
 
             <form id="signup" class="form">
                 <div class="form-group">
@@ -89,7 +113,7 @@
                 /**
                  * TODO: We should validate our form
                  * before sumbit :) 
-                 */ 
+                 */
                 btn.addEventListener('click', function (event) {
                     event.preventDefault();
 
@@ -113,7 +137,7 @@
                 });
             };
 
-            function getValue(id, attr='value') {
+            function getValue(id, attr = 'value') {
                 return (document.getElementById(id) || {})[attr];
             }
         </script>
