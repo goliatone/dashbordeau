@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WebView Controller</title>
+</head>
+
+<body>
+    <script>
+
+        let webview;
+
+        const ipc = require('electron').ipcRenderer;
+
+        ipc.on('load.stuff', (event, data) => {
+            console.log('load stuff -- ', data);
+
+            webview = document.createElement('webview');
+            webview.addEventListener('did-finish-load', onWebViewLoaded);
+            webview.src = data.endpoint;
+            webview.style = 'position:absolute;width:100%;height:100%;';
+            webview.preload = './loader.js';
+
+            document.body.appendChild(webview);
+        });
+
+        function onWebViewLoaded(event) {
+            console.log('webview ready', event);
+        }
+
+        window.onload = function () {
+            ipc.send('loader.ready', 'from onWebViewLoaded');
+        };
+    </script>
+
+</body>
+
+</html>
