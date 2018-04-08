@@ -35,7 +35,7 @@ function createWindow() {
     // Create the browser maindow.
     main = new BrowserWindow({
         width: 600,
-        height: 630,
+        height: 720,
         titleBarStyle: 'hiddenInset',
         frame: false,
         show: false,
