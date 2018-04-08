@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WebView Controller</title>
+    <link href="css/spectre.min.css" link rel="stylesheet" />
+    <style>
+        body {
+            user-select: none;
+        }
+
+        .container {
+            width: 550px;
+            padding-top: 40px;
+        }
+
+        #submitBtn {
+            width: 100%;
+            margin-top: 25px;
+        }
+        h3{
+            cursor: default;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content" class="container">
+        <div class="columns centered">
+            <div class="text-center">
+                <h3>Tableau Dashboard</h3>
+            </div>
+
+            <form id="signup" class="form">
+                <div class="form-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-input" type="email" id="email" placeholder="Email" value="">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input class="form-input" id="password" type="password" placeholder="Password" value="" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="url">URL</label>
+                    <input class="form-input" id="url" type="url" placeholder="URL" value="">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="interval">Refresh Interval</label>
+                    <input class="form-input" id="interval" type="number" placeholder="Refresh Interval">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="unit">Time Unit</label>
+                    <select id="units" name="unit" class="form-select">
+                        <option value="" selected>Time unit</option>
+
+                        <option value="seconds">Seconds</option>
+                        <option value="minutes">Minutes</option>
+                        <option value="hours">Hours</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button id="submitBtn" class="btn btn-primary btn-lg float-right">Submit</button>
+            </form>
+            </div>
+        </div>
+        <script>
+            const ipc = require('electron').ipcRenderer;
+
+            window.onload = function () {
+                const btn = document.getElementById('submitBtn');
+                const input = document.getElementById('email');
+                input.focus();
+
+                btn.addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                    btn.classList.add('loading');
+
+                    const email = getValue('email');
+                    const units = getValue('units');
+                    const endpoint = getValue('url');
+                    const password = getValue('password');
+                    const interval = getValue('interval');
+
+                    ipc.send('form.sumbit', {
+                        email,
+                        units,
+                        password,
+                        endpoint,
+                        interval,
+                    });
+                });
+            };
+
+            function getValue(id) {
+                return (document.getElementById(id) || {}).value;
+            }
+        </script>
+</body>
+
+</html>
