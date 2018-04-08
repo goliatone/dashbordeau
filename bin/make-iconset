@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SETNAME=assets/src/dashbordeur
-ICON_NAME=assets/src/dashbordeur-round
+SETNAME=assets/src/dashbordeau
+ICON_NAME=assets/src/dashbordeau-round
 
 mkdir $SETNAME.iconset
 
@@ -17,6 +17,6 @@ sips -z 512 512   $ICON_NAME.png --out $SETNAME.iconset/icon_512x512.png
 
 cp $ICON_NAME.png $SETNAME.iconset/icon_512x512@2x.png
 
-iconutil -c icns $SETNAME.iconset
+# iconutil -c icns $SETNAME.iconset
 
 # rm -R $SETNAME.iconset
