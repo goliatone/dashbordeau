@@ -1,6 +1,6 @@
 {
-  "name": "dashbordeur",
-  "productName": "Dashbordeur",
+  "name": "dashbordeau",
+  "productName": "Dashbordeau",
   "version": "0.1.0",
   "private": true,
   "description": "Fullscreen Tableau dashboards",
@@ -8,7 +8,7 @@
   "scripts": {
     "start": "electron .",
     "package:mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
-    "installer:mac": "electron-installer-dmg ./release-builds/Dashbordeur-darwin-x64/Dashbordeur.app Dashbordeur --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns --background=assets/src/dashbordeur-installer.png",
+    "installer:mac": "electron-installer-dmg ./release-builds/Dashbordeau-darwin-x64/Dashbordeau.app Dashbordeau --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns --background=assets/src/dashbordeau-installer.png",
     "build:mac": "npm run package:mac && npm run installer:mac"
   },
   "author": "Goliatone <hello@goliatone.com>",
