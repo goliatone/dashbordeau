@@ -30,7 +30,7 @@ function createWindow() {
     // Open the DevTools.
     // main.webContents.openDevTools();
 
-    main.on('ready-to-show', () =>{
+    main.on('ready-to-show', () => {
         main.show();
     });
     // Emitted when the maindow is closed.
@@ -116,13 +116,11 @@ ipcMain.on('loader.ready', (event, msg) => {
     event.sender.send('load.stuff', loaderData);
 });
 
-let active = false;
-
 ipcMain.on('page.loaded', (event, url) => {
     console.log('page loaded...', url);
-    
+
     if (webview.reloading) return;
-    
+
     main.hide();
     webview.show();
     webview.reloading = true;
