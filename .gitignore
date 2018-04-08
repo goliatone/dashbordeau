@@ -62,3 +62,5 @@ node_modules
 */.caretaker_*
 */.envset
 release-builds
+.tmp
+dist
