@@ -1,6 +1,6 @@
 ## Dashbordeau
 
-Fullscreen dashboard with configurable auto-refresh intervals.git 
+Fullscreen dashboard with configurable auto-refresh intervals. 
 
 ![preview](./assets/images/preview.png "Dashbordeau preview")
 
