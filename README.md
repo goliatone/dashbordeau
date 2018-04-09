@@ -22,6 +22,13 @@ Need to have `GH_TOKEN` set to publish.
 
 
 <!--
+
+Possible features:
+* Support multiple screens
+* Remote control. Have a client installed in a computer and control centrally.
+* Fleet control.
+* iBeacon broadcasting, so the companion app reacts changing content based on client.
+
 electron-icon-maker -i assets/icons/src/dashbordeau-round.png -o assets/
 
 https://www.christianengvall.se/electron-menu/
