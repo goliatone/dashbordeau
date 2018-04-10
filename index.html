@@ -7,10 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashbordeau</title>
     <link href="css/spectre.min.css" link rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption" rel="stylesheet">
     <style>
         body {
             user-select: none;
+            -webkit-app-region: drag;
         }
 
         .container {
@@ -22,14 +23,14 @@
             width: 100%;
             margin-top: 25px;
         }
-        
+
         h3 {
             cursor: default;
             font-family: 'PT Sans Caption', sans-serif;
         }
 
         .logo {
-            margin-top:14px;
+            margin-top: 14px;
             margin-left: 27%;
             padding-bottom: 10px;
         }
@@ -91,10 +92,19 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-switch">
-                        <input id="fullscreen" checked type="checkbox">
-                        <i class="form-icon"></i> Start dashboard in fullscreen
-                    </label>
+                    <div class="columns">
+                        <div class="column col-4">
+                            <label class="form-switch">
+                                <input id="fullscreen" checked type="checkbox">
+                                <i class="form-icon"></i> Fullscreen
+                            </label>
+                        </div>
+                        <div class="column col-8">
+                            <select id="display" class="form-select select-sm">
+                                <option>Select Display</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -104,8 +114,22 @@
         </div>
         <script>
             const ipc = require('electron').ipcRenderer;
+            const remote = require('electron').remote;
 
             window.onload = function () {
+                let displays = remote.screen.getAllDisplays();
+                let displaySelect = document.getElementById('display');
+                displays.map((display) => {
+                    var opt = document.createElement('option');
+                    opt.value = display.id;
+                    opt.innerHTML = display.id + `: ${display.size.width} x ${display.size.height}`;
+                    displaySelect.appendChild(opt);
+                });
+
+                // if(displays.length === 1) {
+                    displaySelect.value = displays[0].id;
+                // }
+
                 const btn = document.getElementById('submitBtn');
                 const input = document.getElementById('email');
                 input.focus();
@@ -124,11 +148,13 @@
                     const endpoint = getValue('url');
                     const password = getValue('password');
                     const interval = getValue('interval');
+                    const display = getValue('display');
                     const fullscreen = getValue('fullscreen', 'checked');
 
                     ipc.send('form.sumbit', {
                         email,
                         units,
+                        display,
                         password,
                         endpoint,
                         interval,
