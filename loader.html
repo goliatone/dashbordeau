@@ -14,6 +14,7 @@
         let webview;
 
         const ipc = require('electron').ipcRenderer;
+        // const remote = require('electron').remote;
 
         ipc.on('load.stuff', (event, data) => {
             console.log('load stuff -- ', data);
