@@ -29,6 +29,8 @@ Possible features:
 * Fleet control.
 * iBeacon broadcasting, so the companion app reacts changing content based on client.
 
+ble: https://github.com/aalhaimi/electron-web-bluetooth
+
 electron-icon-maker -i assets/icons/src/dashbordeau-round.png -o assets/
 
 https://www.christianengvall.se/electron-menu/
