@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
             $('#email').val(data.email);
             $('#password').val(data.password);
             $('#login-submit').click();
+            $('#remember').prop('checked', true);
 
             if(document.location.href.indexOf(data.endpoint) === 0) {
                 ipc.send('page.loaded', document.location.href);
