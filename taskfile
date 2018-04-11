@@ -25,7 +25,7 @@ function publish:major {
 
 function publish:minor {
     _publish:check
-    npm version minor && npm publish && npm version patch && git push --tags && git push origin master
+    npm version minor && git push --tags && git push origin master
 }
 
 function publish:patch {
