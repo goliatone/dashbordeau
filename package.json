@@ -1,7 +1,7 @@
 {
   "name": "dashbordeau",
   "productName": "Dashbordeau",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Fullscreen Tableau dashboards",
   "main": "main.js",
   "scripts": {
@@ -43,7 +43,7 @@
       "files": [
         "!release-builds/*",
         "!assets/*",
-        "!bin/*", 
+        "!bin/*",
         "!.tmp",
         "!README.md",
         "!taskfile",
