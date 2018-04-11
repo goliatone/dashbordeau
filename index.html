@@ -119,10 +119,10 @@
             window.onload = function () {
                 let displays = remote.screen.getAllDisplays();
                 let displaySelect = document.getElementById('display');
-                displays.map((display) => {
+                displays.map((display, i) => {
                     var opt = document.createElement('option');
                     opt.value = display.id;
-                    opt.innerHTML = display.id + `: ${display.size.width} x ${display.size.height}`;
+                    opt.innerHTML =  `Display ${(i + 1)}: ${display.size.width} x ${display.size.height}`;
                     displaySelect.appendChild(opt);
                 });
 
