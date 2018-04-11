@@ -33,6 +33,10 @@ function publish:patch {
     npm version patch && npm publish && git push --tags && git push origin master
 }
 
+function release {
+    envset development -- npm run release
+}
+
 function help {
     echo "$0 <task> <args>"
     echo "Tasks:"
